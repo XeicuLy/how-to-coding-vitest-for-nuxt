@@ -7,6 +7,9 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
+    "format:check": "prettier . --check",
+    "format:fix": "prettier . --write",
+    "ci:prettier": "prettier --check .",
     "postinstall": "nuxt prepare",
     "prepare": "husky"
   },
@@ -21,7 +24,8 @@
     "commitizen": "4.3.1",
     "commitlint-config-gitmoji": "2.3.1",
     "cz-customizable": "7.4.0",
-    "husky": "9.1.7"
+    "husky": "9.1.7",
+    "prettier": "3.5.3"
   },
   "config": {
     "commitizen": {
