@@ -7,8 +7,11 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "format:check": "prettier . --check",
     "format:fix": "prettier . --write",
+    "eslint-rule-check": "npx @eslint/config-inspector@latest",
     "ci:prettier": "prettier --check .",
     "postinstall": "nuxt prepare",
     "prepare": "husky"
