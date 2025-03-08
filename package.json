@@ -11,7 +11,7 @@
     "lint:fix": "eslint . --fix",
     "format:check": "prettier . --check",
     "format:fix": "prettier . --write",
-    "eslint-rule-check": "npx @eslint/config-inspector@latest",
+    "eslint-rule-check": "npx @eslint/config-inspector",
     "ci:prettier": "prettier --check .",
     "ci:eslint": "eslint .",
     "postinstall": "nuxt prepare",
@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "19.8.0",
+    "@eslint/config-inspector": "1.0.2",
     "@nuxt/eslint": "1.1.0",
     "@types/node": "22.13.9",
     "@typescript-eslint/parser": "8.26.0",
