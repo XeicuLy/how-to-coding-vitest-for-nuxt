@@ -7,12 +7,29 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "prepare": "husky"
   },
   "dependencies": {
     "nuxt": "^3.16.0",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.0",
+    "@types/node": "^22.13.9",
+    "commitizen": "^4.3.1",
+    "commitlint-config-gitmoji": "^2.3.1",
+    "cz-customizable": "^7.4.0",
+    "husky": "^9.1.7"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-customizable"
+    },
+    "cz-customizable": {
+      "config": ".cz-config.cts"
+    }
   },
   "volta": {
     "node": "22.14.0",
