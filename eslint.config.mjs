@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import vueEslintParser from 'vue-eslint-parser';
 import { includeIgnoreFile } from '@eslint/compat';
 import tsEslintParser from '@typescript-eslint/parser';
-import eslintConfigPrettier from 'eslint-config-prettier/flat';
+import vuePrettierConfig from '@vue/eslint-config-prettier';
 import globals from 'globals';
 import withNuxt from './.nuxt/eslint.config.mjs';
 
@@ -84,5 +84,5 @@ export default withNuxt([
       ],
     },
   },
-  eslintConfigPrettier,
+  vuePrettierConfig,
 ]);
