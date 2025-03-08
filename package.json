@@ -49,8 +49,11 @@
     }
   },
   "lint-staged": {
-    "**/*.{js,mjs,cjs,ts,cts,mts,vue}": "eslint",
-    "**/*.{js,mjs,cjs,ts,cts,mts,vue,json}": "prettier --check"
+    "**/*.{js,mjs,cjs,ts,cts,mts,vue}": [
+      "eslint",
+      "prettier --check"
+    ],
+    "**/*.json": "prettier --check"
   },
   "volta": {
     "node": "22.14.0",
