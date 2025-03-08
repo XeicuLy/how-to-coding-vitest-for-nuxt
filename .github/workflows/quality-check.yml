@@ -1,0 +1,34 @@
+name: Quality Check
+
+on:
+  pull_request:
+    branches:
+      - main
+      - master
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: 22.14.0
+  PNPM_VERSION: 9.15.7
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    needs: []
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js and install dependencies
+        uses: ./.github/actions/install
+        with:
+          pnpm-version: ${{ env.PNPM_VERSION }}
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Execute Build
+        run: pnpm build
