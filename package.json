@@ -48,6 +48,10 @@
       "config": ".cz-config.cts"
     }
   },
+  "lint-staged": {
+    "**/*.{js,mjs,cjs,ts,cts,mts,vue}": "eslint",
+    "**/*.{js,mjs,cjs,ts,cts,mts,vue,json}": "prettier --check"
+  },
   "volta": {
     "node": "22.14.0",
     "pnpm": "9.15.7"
