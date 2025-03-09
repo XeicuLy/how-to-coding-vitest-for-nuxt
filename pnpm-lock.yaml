@@ -63,6 +63,9 @@ importers:
       eslint:
         specifier: 9.22.0
         version: 9.22.0(jiti@2.4.2)
+      eslint-plugin-reactive-value-suffix:
+        specifier: 2.0.1
+        version: 2.0.1
       globals:
         specifier: 16.0.0
         version: 16.0.0
@@ -2288,6 +2291,10 @@ packages:
         optional: true
       eslint-config-prettier:
         optional: true
+
+  eslint-plugin-reactive-value-suffix@2.0.1:
+    resolution: {integrity: sha512-nOxcoeaaUCz273x9dvj/VvAn9fftvQZMe9wBJ26ST7ouIA9OR/B39QfK/U50P4rLNyRRKGgY2R+9kNBPfe44dw==}
+    engines: {node: '>=20.0.0'}
 
   eslint-plugin-regexp@2.7.0:
     resolution: {integrity: sha512-U8oZI77SBtH8U3ulZ05iu0qEzIizyEDXd+BWHvyVxTOjGwcDcvy/kEpgFG4DYca2ByRLiVPFZ2GeH7j1pdvZTA==}
@@ -7424,6 +7431,8 @@ snapshots:
       synckit: 0.9.2
     optionalDependencies:
       eslint-config-prettier: 10.1.1(eslint@9.22.0(jiti@2.4.2))
+
+  eslint-plugin-reactive-value-suffix@2.0.1: {}
 
   eslint-plugin-regexp@2.7.0(eslint@9.22.0(jiti@2.4.2)):
     dependencies:
