@@ -86,7 +86,7 @@ export default withNuxt([
           warnOnUnassignedImports: true, // 副作用のみのインポートに警告
         },
       ],
-      'reactive-value-suffix/suffix': ['error', { functionNamesToIgnoreValueCheck: [''] }],
+      'reactive-value-suffix/suffix': 'error',
     },
   },
   {
