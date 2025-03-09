@@ -15,7 +15,8 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:jsdom": "vitest --ui --environment=jsdom",
-    "ci:vitest": "vitest --coverage",
+    "ci:typecheck": "nuxi typecheck .",
+    "ci:vitest": "vitest --coverage --silent",
     "ci:prettier": "prettier --check .",
     "ci:eslint": "eslint .",
     "postinstall": "nuxt prepare",
@@ -50,7 +51,8 @@
     "prettier": "3.5.3",
     "typescript": "5.8.2",
     "vitest": "3.0.8",
-    "vue-eslint-parser": "10.1.1"
+    "vue-eslint-parser": "10.1.1",
+    "vue-tsc": "2.2.8"
   },
   "config": {
     "commitizen": {
