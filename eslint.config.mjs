@@ -6,6 +6,7 @@ import { includeIgnoreFile } from '@eslint/compat';
 import tsEslintParser from '@typescript-eslint/parser';
 import vitest from '@vitest/eslint-plugin';
 import vuePrettierConfig from '@vue/eslint-config-prettier';
+import eslintReactiveValueSuffix from 'eslint-plugin-reactive-value-suffix';
 import globals from 'globals';
 import withNuxt from './.nuxt/eslint.config.mjs';
 
@@ -29,6 +30,8 @@ export default withNuxt([
         ...globals.node,
       },
     },
+    // @ts-expect-error - ESLint v9とTypeScript-ESLintの型の互換性問題
+    plugins: { 'reactive-value-suffix': eslintReactiveValueSuffix },
     rules: {
       'import/order': [
         'error',
@@ -83,6 +86,7 @@ export default withNuxt([
           warnOnUnassignedImports: true, // 副作用のみのインポートに警告
         },
       ],
+      'reactive-value-suffix/suffix': ['error', { functionNamesToIgnoreValueCheck: [''] }],
     },
   },
   {
