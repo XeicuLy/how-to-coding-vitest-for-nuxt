@@ -1,4 +1,5 @@
 import { createTestingPinia, type TestingPinia } from '@pinia/testing';
+import { vi } from 'vitest';
 import type { StateTree } from 'pinia';
 
 /**
@@ -10,6 +11,7 @@ import type { StateTree } from 'pinia';
 export function bindTestingPinia(initialState: StateTree = {}): TestingPinia {
   const testingPinia = createTestingPinia({
     stubActions: false,
+    createSpy: vi.fn,
     initialState: { ...initialState },
   });
 
