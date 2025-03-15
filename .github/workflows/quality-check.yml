@@ -33,22 +33,6 @@ jobs:
       - name: Run TypeScript type check
         run: pnpm ci:typecheck
 
-  prettier:
-    runs-on: ubuntu-latest
-    needs: type-check
-    steps:
-      - name: Checkout source code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js and install dependencies
-        uses: ./.github/actions/install
-        with:
-          pnpm-version: ${{ env.PNPM_VERSION }}
-          node-version: ${{ env.NODE_VERSION }}
-
-      - name: Execute Prettier
-        run: pnpm ci:prettier
-
   eslint:
     runs-on: ubuntu-latest
     needs: type-check
@@ -65,9 +49,25 @@ jobs:
       - name: Execute ESLint
         run: pnpm ci:eslint
 
+  prettier:
+    runs-on: ubuntu-latest
+    needs: type-check
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js and install dependencies
+        uses: ./.github/actions/install
+        with:
+          pnpm-version: ${{ env.PNPM_VERSION }}
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Execute Prettier
+        run: pnpm ci:prettier
+
   vitest:
     runs-on: ubuntu-latest
-    needs: [type-check, prettier, eslint]
+    needs: [type-check, eslint, prettier]
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4
@@ -83,7 +83,7 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    needs: [type-check, prettier, eslint, vitest]
+    needs: [type-check, eslint, prettier, vitest]
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4
