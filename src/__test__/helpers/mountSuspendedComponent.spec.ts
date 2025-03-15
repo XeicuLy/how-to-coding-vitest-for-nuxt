@@ -38,19 +38,18 @@ const TestComponent = defineComponent({
 });
 
 // 非同期コンポーネント
-const AsyncTestComponent = defineAsyncComponent(() =>
-  Promise.resolve({
-    // @ts-expect-error テストのために型エラーを無視
-    setup() {
-      const asyncData = ref('非同期データ');
-      return { asyncData };
-    },
-    render() {
-      // @ts-expect-error テストのために型エラーを無視
-      return h('div', [h('p', `Async data: ${this.asyncData}`)]);
-    },
-  }),
-);
+const AsyncComponent = defineComponent({
+  setup() {
+    const asyncData = ref('非同期データ');
+    return { asyncData };
+  },
+  render() {
+    return h('div', [h('p', `Async data: ${this.asyncData}`)]);
+  },
+});
+
+// 非同期コンポーネントとして使用
+const AsyncTestComponent = defineAsyncComponent(() => Promise.resolve(AsyncComponent));
 
 // Piniaストアの定義
 const useCounterStore = defineStore('counter', {
