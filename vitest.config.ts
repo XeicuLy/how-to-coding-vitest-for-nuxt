@@ -14,7 +14,7 @@ export default defineVitestConfig({
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
       reportsDirectory: '../logs/coverage',
-      all: true,
+      all: false,
     },
   },
 });
