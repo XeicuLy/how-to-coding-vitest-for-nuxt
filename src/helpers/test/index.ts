@@ -1,0 +1,1 @@
+export { bindTestingPinia } from './bindTestingPinia';
