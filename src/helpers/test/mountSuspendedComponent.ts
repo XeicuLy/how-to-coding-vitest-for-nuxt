@@ -4,6 +4,7 @@ import { RouterLinkStub, type VueWrapper } from '@vue/test-utils';
 import type { bindTestingPinia } from './bindTestingPinia';
 
 interface MountOptions {
+  testingPinia?: ReturnType<typeof bindTestingPinia>;
   attachTo?: Element | string;
   props?: Record<string, unknown>;
   slots?: Record<string, () => VNode | VNode[] | string> | Slots;
@@ -18,6 +19,7 @@ const DEFAULT_STUBS = {
 } as const;
 
 const DEFAULT_OPTIONS = {
+  testingPinia: undefined,
   attachTo: undefined,
   props: {},
   slots: {},
@@ -33,8 +35,9 @@ const DEFAULT_OPTIONS = {
  *
  * @template VMValue - コンポーネントインスタンスの型。コンポーネントのプロパティやメソッドへの型安全なアクセスを提供します
  * @param component - テスト対象のVueコンポーネント
- * @param testingPinia - テスト用のPiniaインスタンス（bindTestingPinia関数で作成したもの）
  * @param options - マウントオプション（任意）
+ * @param options.testingPinia - テスト用のPiniaインスタンス（bindTestingPinia関数で作成したもの）
+ * @param options.attachTo - コンポーネントをマウントするDOM要素
  * @param options.props - コンポーネントに渡すprops
  * @param options.slots - コンポーネントのスロット
  * @param options.shallow - 浅いレンダリングを行うかどうか
@@ -49,8 +52,9 @@ const DEFAULT_OPTIONS = {
  * const useUserStore = pinia.stores.user;
  * useUserStore.user = { name: 'Test User' };
  *
- * const wrapper = await mountSuspendedComponent<{ computedProperty: string }>(MyComponent, pinia, {
- *   props: { message: 'Hello' }
+ * const wrapper = await mountSuspendedComponent<{ computedProperty: string }>(MyComponent, {
+ *   testingPinia: pinia
+ *   props: { message: 'Hello' },
  * });
  *
  * // コンポーネントの検証
@@ -63,11 +67,10 @@ const DEFAULT_OPTIONS = {
  */
 export async function mountSuspendedComponent<VMValue>(
   component: Component,
-  testingPinia: ReturnType<typeof bindTestingPinia>,
   options: Partial<MountOptions> = DEFAULT_OPTIONS,
 ): Promise<VueWrapper<ComponentPublicInstance & VMValue>> {
   const mergedOptions = { ...DEFAULT_OPTIONS, ...options };
-  const { attachTo, props, slots, shallow, stubs, mocks, options: additionalOptions } = mergedOptions;
+  const { testingPinia, attachTo, props, slots, shallow, stubs, mocks, options: additionalOptions } = mergedOptions;
 
   return await mountSuspended(component, {
     ...additionalOptions,
@@ -76,7 +79,7 @@ export async function mountSuspendedComponent<VMValue>(
     slots,
     shallow,
     global: {
-      plugins: [testingPinia],
+      plugins: testingPinia ? [testingPinia] : [],
       stubs: {
         ...DEFAULT_STUBS,
         ...stubs,
