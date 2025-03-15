@@ -13,7 +13,7 @@
     "format:fix": "prettier . --write",
     "eslint-rule-check": "npx @eslint/config-inspector",
     "test": "vitest",
-    "test:ui": "vitest --ui",
+    "test:ui": "vitest --ui --coverage",
     "test:jsdom": "vitest --ui --environment=jsdom",
     "ci:typecheck": "nuxi typecheck .",
     "ci:vitest": "vitest --coverage --silent",
