@@ -1,0 +1,67 @@
+diff --git a/dist/index.mjs b/dist/index.mjs
+index 89cd29634b7fc4065fb705adc86b64044176d7e8..0c02f20d4f5db8f84c745e361899b50becd77562 100644
+--- a/dist/index.mjs
++++ b/dist/index.mjs
+@@ -1,5 +1,5 @@
+ // src/testing.ts
+-import { createApp, customRef, isReactive, isRef, toRaw, triggerRef } from "vue";
++import { computed, createApp, isReactive, isRef, toRaw, triggerRef } from 'vue'
+ import {
+   setActivePinia,
+   createPinia
+@@ -78,35 +78,29 @@ function isComputed(v) {
+   return !!v && isRef(v) && "effect" in v;
+ }
+ function WritableComputed({ store }) {
+-  const rawStore = toRaw(store);
++  const rawStore = toRaw(store)
+   for (const key in rawStore) {
+-    const originalComputed = rawStore[key];
++    const originalComputed = rawStore[key]
+     if (isComputed(originalComputed)) {
+-      const originalFn = originalComputed.effect.fn;
+-      rawStore[key] = customRef((track, trigger) => {
+-        const overriddenFn = () => (
+-          // @ts-expect-error: internal value
+-          originalComputed._value
+-        );
+-        return {
+-          get: () => {
+-            track();
+-            return originalComputed.value;
+-          },
+-          set: (newValue) => {
+-            if (newValue === void 0) {
+-              originalComputed.effect.fn = originalFn;
+-              delete originalComputed._value;
+-              originalComputed._dirty = true;
+-            } else {
+-              originalComputed.effect.fn = overriddenFn;
+-              originalComputed._value = newValue;
+-            }
+-            triggerRef(originalComputed);
+-            trigger();
++      const originalFn = originalComputed.fn
++      const overriddenFn = () =>
++        originalComputed._value
++      rawStore[key] = computed({
++        get() {
++          return originalComputed.value
++        },
++        set(newValue) {
++          if (newValue === undefined) {
++            originalComputed.fn = originalFn
++            delete originalComputed._value
++            originalComputed._dirty = true
++          } else {
++            originalComputed.fn = overriddenFn
++            originalComputed._value = newValue
+           }
+-        };
+-      });
++          triggerRef(originalComputed)
++        },
++      })
+     }
+   }
+ }
