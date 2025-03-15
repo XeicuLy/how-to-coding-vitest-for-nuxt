@@ -65,9 +65,25 @@ jobs:
       - name: Execute ESLint
         run: pnpm ci:eslint
 
-  build:
+  vitest:
     runs-on: ubuntu-latest
     needs: [type-check, prettier, eslint]
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js and install dependencies
+        uses: ./.github/actions/install
+        with:
+          pnpm-version: ${{ env.PNPM_VERSION }}
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Execute Vitest
+        run: pnpm ci:vitest
+
+  build:
+    runs-on: ubuntu-latest
+    needs: [type-check, prettier, eslint, vitest]
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4
