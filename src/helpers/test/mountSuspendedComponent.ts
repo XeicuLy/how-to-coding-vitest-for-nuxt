@@ -5,7 +5,6 @@ import type { bindTestingPinia } from './bindTestingPinia';
 
 interface MountOptions {
   attachTo?: Element | string;
-  data?: Record<string, unknown>;
   props?: Record<string, unknown>;
   slots?: Record<string, () => VNode | VNode[] | string> | Slots;
   shallow?: boolean;
@@ -20,7 +19,6 @@ const DEFAULT_STUBS = {
 
 const DEFAULT_OPTIONS = {
   attachTo: undefined,
-  data: {},
   props: {},
   slots: {},
   shallow: false,
@@ -37,7 +35,6 @@ const DEFAULT_OPTIONS = {
  * @param component - テスト対象のVueコンポーネント
  * @param testingPinia - テスト用のPiniaインスタンス（bindTestingPinia関数で作成したもの）
  * @param options - マウントオプション（任意）
- * @param options.data - コンポーネントのデータオブジェクト
  * @param options.props - コンポーネントに渡すprops
  * @param options.slots - コンポーネントのスロット
  * @param options.shallow - 浅いレンダリングを行うかどうか
@@ -70,11 +67,10 @@ export async function mountSuspendedComponent<VMValue>(
   options: Partial<MountOptions> = DEFAULT_OPTIONS,
 ): Promise<VueWrapper<ComponentPublicInstance & VMValue>> {
   const mergedOptions = { ...DEFAULT_OPTIONS, ...options };
-  const { data, attachTo, props, slots, shallow, stubs, mocks, options: additionalOptions } = mergedOptions;
+  const { attachTo, props, slots, shallow, stubs, mocks, options: additionalOptions } = mergedOptions;
 
   return await mountSuspended(component, {
     ...additionalOptions,
-    data: () => data,
     attachTo,
     props,
     slots,
