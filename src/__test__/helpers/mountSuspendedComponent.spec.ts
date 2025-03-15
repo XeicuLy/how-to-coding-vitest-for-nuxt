@@ -1,8 +1,7 @@
 import { defineComponent, h, ref, computed, defineAsyncComponent, nextTick } from 'vue';
 import { defineStore } from 'pinia';
 import { describe, expect, test, vi, beforeEach } from 'vitest';
-import { bindTestingPinia } from '@/helpers/test/bindTestingPinia';
-import { mountSuspendedComponent } from '@/helpers/test/mountSuspendedComponent';
+import { bindTestingPinia, mountSuspendedComponent } from '@/helpers/test';
 
 // 基本的なテスト用のコンポーネント
 const TestComponent = defineComponent({
@@ -68,7 +67,7 @@ const useCounterStore = defineStore('counter', {
   },
 });
 
-describe('mountSuspendedComponent', () => {
+describe('src/helpers/test/mountSuspendedComponent.ts', () => {
   beforeEach(() => {
     // 各テスト実行前に全てのモックをリセット
     vi.resetAllMocks();
