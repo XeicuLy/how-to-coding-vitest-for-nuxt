@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  '@pinia/testing':
+    hash: nsjhv2oz6t74mvmed75f3kln4a
+    path: patches/@pinia__testing.patch
+
 importers:
 
   .:
@@ -38,7 +43,7 @@ importers:
         version: 3.17.2(@types/node@22.13.9)(@vitest/ui@3.0.8)(@vue/test-utils@2.4.6)(happy-dom@17.4.2)(jiti@2.4.2)(jsdom@26.0.0)(magicast@0.3.5)(terser@5.39.0)(typescript@5.8.2)(vitest@3.0.8)(yaml@2.7.0)
       '@pinia/testing':
         specifier: 1.0.0
-        version: 1.0.0(pinia@3.0.1(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))
+        version: 1.0.0(patch_hash=nsjhv2oz6t74mvmed75f3kln4a)(pinia@3.0.1(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))
       '@types/node':
         specifier: 22.13.9
         version: 22.13.9
@@ -6023,7 +6028,7 @@ snapshots:
     transitivePeerDependencies:
       - magicast
 
-  '@pinia/testing@1.0.0(pinia@3.0.1(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))':
+  '@pinia/testing@1.0.0(patch_hash=nsjhv2oz6t74mvmed75f3kln4a)(pinia@3.0.1(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))':
     dependencies:
       pinia: 3.0.1(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2))
 

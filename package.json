@@ -77,5 +77,10 @@
     "node": "22.14.0",
     "pnpm": "9.15.7"
   },
-  "packageManager": "pnpm@9.15.7"
+  "packageManager": "pnpm@9.15.7",
+  "pnpm": {
+    "patchedDependencies": {
+      "@pinia/testing": "patches/@pinia__testing.patch"
+    }
+  }
 }
