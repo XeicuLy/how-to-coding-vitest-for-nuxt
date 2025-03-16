@@ -13,5 +13,12 @@ describe('ChildComponent.vue', () => {
       expect(wrapper.exists()).toBe(true);
       expect(wrapper.find('#child-component').text()).toBe('Test Props');
     });
+
+    test('親コンポーネントからPropsが渡されない場合、デフォルト値が表示されるか', async () => {
+      const wrapper = await mountSuspendedComponent(ChildComponent);
+
+      expect(wrapper.exists()).toBe(true);
+      expect(wrapper.find('#child-component').text()).toBe('Default Text');
+    });
   });
 });
