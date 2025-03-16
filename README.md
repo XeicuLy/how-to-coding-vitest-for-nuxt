@@ -1,3 +1,16 @@
+# コンポーネントテストの雛形
+
+```ts
+import { describe, expect, test } from 'vitest';
+import { mountSuspendedComponent } from '@/helpers/test';
+
+describe('test/target', () => {
+  test('テスト内容', async () => {});
+});
+```
+
+---
+
 # Nuxt Minimal Starter
 
 Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
