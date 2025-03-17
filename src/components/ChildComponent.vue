@@ -1,12 +1,12 @@
 <script setup lang="ts">
 type Props = {
-  text?: string;
+  textContent?: string;
 };
 
 withDefaults(defineProps<Props>(), {
-  text: 'Default Text',
+  textContent: 'Default Text',
 });
 </script>
 <template>
-  <div id="child-component">{{ text }}</div>
+  <div id="child-component">{{ textContent }}</div>
 </template>
