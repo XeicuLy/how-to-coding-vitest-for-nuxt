@@ -29,6 +29,19 @@ describe('src/components/ParentComponent.vue', () => {
       expect(wrapper.exists()).toBe(true);
       expect(wrapper.findComponent(ChildComponent).exists()).toBe(true);
     });
+
+    test('複数ある同じ名前の子コンポーネントが正しくレンダリングされているか', async () => {
+      const OutlineButton = {
+        template: '<button class="test">Outline Button</button>',
+      };
+      const stubs = { OutlineButton };
+      const wrapper = await mountSuspendedComponent(ParentComponent, { stubs });
+
+      expect(wrapper.exists()).toBe(true);
+      expect(wrapper.findAllComponents(OutlineButton).length).toBe(2);
+      expect(wrapper.findAllComponents(OutlineButton)[0].exists()).toBe(true);
+      expect(wrapper.findAllComponents(OutlineButton)[1].exists()).toBe(true);
+    });
   });
 
   describe('Propsテスト', () => {
