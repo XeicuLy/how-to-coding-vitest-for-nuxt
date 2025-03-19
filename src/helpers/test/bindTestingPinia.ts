@@ -12,7 +12,7 @@ export function bindTestingPinia(initialState: StateTree = {}): TestingPinia {
   const testingPinia = createTestingPinia({
     stubActions: false,
     createSpy: vi.fn,
-    initialState: { ...initialState },
+    initialState,
   });
 
   return testingPinia;
