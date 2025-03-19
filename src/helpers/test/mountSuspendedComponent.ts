@@ -80,11 +80,8 @@ export async function mountSuspendedComponent<VMValue>(
     shallow,
     global: {
       plugins: testingPinia ? [testingPinia] : [],
-      stubs: {
-        ...DEFAULT_STUBS,
-        ...stubs,
-      },
-      mocks: { ...mocks },
+      stubs: { ...DEFAULT_STUBS, ...stubs },
+      mocks,
     },
   });
 }
