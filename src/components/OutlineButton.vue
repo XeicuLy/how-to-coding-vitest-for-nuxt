@@ -1,5 +1,12 @@
+<script setup lang="ts">
+type Props = {
+  handleClick: () => void;
+};
+
+defineProps<Props>();
+</script>
 <template>
-  <button class="button default">
+  <button class="button default" @click.prevent="handleClick">
     <slot />
   </button>
 </template>
