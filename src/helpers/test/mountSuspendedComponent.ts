@@ -11,6 +11,7 @@ interface MountOptions {
   shallow?: boolean;
   stubs?: Record<string, Component | boolean>;
   mocks?: Record<string, unknown>;
+  config?: Record<string, unknown>;
   options?: Record<string, unknown>;
 }
 
@@ -26,6 +27,7 @@ const DEFAULT_OPTIONS = {
   shallow: false,
   stubs: DEFAULT_STUBS,
   mocks: {},
+  config: {},
   options: {},
 } as const satisfies MountOptions;
 
@@ -70,7 +72,17 @@ export async function mountSuspendedComponent<VMValue>(
   options: Partial<MountOptions> = DEFAULT_OPTIONS,
 ): Promise<VueWrapper<ComponentPublicInstance & VMValue>> {
   const mergedOptions = { ...DEFAULT_OPTIONS, ...options };
-  const { testingPinia, attachTo, props, slots, shallow, stubs, mocks, options: additionalOptions } = mergedOptions;
+  const {
+    testingPinia,
+    attachTo,
+    props,
+    slots,
+    shallow,
+    stubs,
+    mocks,
+    config,
+    options: additionalOptions,
+  } = mergedOptions;
 
   return await mountSuspended(component, {
     ...additionalOptions,
@@ -82,6 +94,7 @@ export async function mountSuspendedComponent<VMValue>(
       plugins: testingPinia ? [testingPinia] : [],
       stubs: { ...DEFAULT_STUBS, ...stubs },
       mocks,
+      config,
     },
   });
 }
