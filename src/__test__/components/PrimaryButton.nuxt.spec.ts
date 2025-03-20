@@ -12,6 +12,7 @@ describe('src/components/PrimaryButton.vue', () => {
 
     await target.trigger('click');
 
+    expect(wrapper.emitted('emitTest')).toHaveLength(1);
     expect(wrapper.emitted()).toHaveProperty('emitTest');
   });
 });
