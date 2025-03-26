@@ -15,5 +15,7 @@ describe('src/components/PrimaryButton.vue', () => {
     // どちらか一方でも良い
     expect(wrapper.emitted('emitTest')).toHaveLength(1);
     expect(wrapper.emitted()).toHaveProperty('emitTest');
+    // emitイベントの引数の確認
+    expect(wrapper.emitted('emitTest')?.[0]).toEqual([true]);
   });
 });

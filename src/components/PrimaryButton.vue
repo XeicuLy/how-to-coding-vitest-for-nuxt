@@ -1,12 +1,14 @@
 <script setup lang="ts">
 type EmitsType = {
-  emitTest: [];
+  emitTest: [value: boolean];
 };
 
 const emit = defineEmits<EmitsType>();
 
+const isClick = ref(false);
+
 const handleClick = () => {
-  emit('emitTest');
+  emit('emitTest', !isClick.value);
 };
 </script>
 <template>
