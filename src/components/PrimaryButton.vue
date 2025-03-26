@@ -8,7 +8,8 @@ const emit = defineEmits<EmitsType>();
 const isClick = ref(false);
 
 const handleClick = () => {
-  emit('emitTest', !isClick.value);
+  isClick.value = !isClick.value;
+  emit('emitTest', isClick.value);
 };
 </script>
 <template>
