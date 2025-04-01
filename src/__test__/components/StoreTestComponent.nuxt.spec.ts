@@ -45,4 +45,27 @@ describe('src/components/StoreTestComponent.vue', () => {
     expect(wrapper.find('[data-testid="state"]').text()).toBe('10');
     expect(wrapper.find('[data-testid="getters"]').text()).toBe('20');
   });
+
+  test('ボタンクリック時にイベントが発火し、値が変更されるか', async () => {
+    testStore.count = 5;
+
+    const wrapper = await mountSuspendedComponent(StoreTestComponent, { testingPinia });
+
+    expect(wrapper.exists()).toBe(true);
+    expect(wrapper.find('[data-testid="state"]').exists()).toBe(true);
+    expect(wrapper.find('[data-testid="state"]').text()).toBe('5');
+    expect(wrapper.find('[data-testid="getters"]').text()).toBe('10');
+
+    const target = wrapper.find('[data-testid="actions"]');
+    expect(target.exists()).toBe(true);
+
+    await target.trigger('click');
+
+    expect(testStore.incrementCount).toHaveBeenCalledTimes(1);
+
+    await nextTick();
+
+    expect(wrapper.find('[data-testid="state"]').text()).toBe('6');
+    expect(wrapper.find('[data-testid="getters"]').text()).toBe('12');
+  });
 });
