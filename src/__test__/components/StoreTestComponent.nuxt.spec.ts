@@ -25,5 +25,6 @@ describe('src/components/StoreTestComponent.vue', () => {
     expect(wrapper.exists()).toBe(true);
     expect(wrapper.find('[data-testid="state"]').exists()).toBe(true);
     expect(wrapper.find('[data-testid="state"]').text()).toBe('5');
+    expect(wrapper.find('[data-testid="getters"]').text()).toBe('10');
   });
 });
